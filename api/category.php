@@ -45,9 +45,15 @@ else if(isset($_PUT)){
 else if(isset($_GET['id'])){
     echo json_encode($category_model->getSingleRows($_GET['id']))  ;      
 }
+else if(isset($_GET['parent'])){
+  echo json_encode($category_model->getChild($_GET['parent']))  ;      
+}
+else if(isset($_GET['child'])){
+  echo json_encode($category_model->getParent($_GET['child']))  ;      
+}
 
 else{
-    echo json_encode($category_model->getParent())  ; 
-//echo json_encode($category_model->getRows())  ;   
+   // echo json_encode($category_model->getParent())  ; 
+echo json_encode($category_model->getRows())  ;   
 }
 ?>

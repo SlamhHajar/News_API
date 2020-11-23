@@ -32,21 +32,21 @@ class Category{
            return $stmt->fetchAll(PDO::FETCH_OBJ); //object that fetch all row in database
           
   }
-  function getParent() {
+  function getParent($cat_parent) {
 
     $pdo=$this->dbConn->connect();// call the fun connect that return 
-    $qury="SELECT * FROM category  WHERE cat_parent = 0" ;
+    $qury="SELECT * FROM category  WHERE ID = ?" ;
        $stmt=  $pdo->prepare($qury);
-         $stmt->execute();
+         $stmt->execute([$cat_parent]);
            return $stmt->fetchAll(PDO::FETCH_OBJ); //object that fetch all row in database
           
   }
-  function getChild() {
+  function getChild($id) {
 
     $pdo=$this->dbConn->connect();// call the fun connect that return 
-    $qury="SELECT * FROM category  WHERE cat_parent != 0" ;
+    $qury="SELECT * FROM category  WHERE cat_parent=? " ;
        $stmt=  $pdo->prepare($qury);
-         $stmt->execute();
+         $stmt->execute([$id]);
            return $stmt->fetchAll(PDO::FETCH_OBJ); //object that fetch all row in database
           
   }
